@@ -1,0 +1,31 @@
+dataset_path: alexfabbri/multi_news
+task: "multinews"
+dataset_kwargs:
+  token: True
+test_split: test
+output_type: generate_until
+doc_to_text: !function utils.multinews_doc_to_text
+doc_to_target: !function utils.multinews_doc_to_target
+process_results: !function utils.multinews_process_results
+
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: "In this task, you are presented with multiple news articles about related topics. Your job is to generate an extractive summary that integrates information from the provided articles. Your summary should be short and concise, that includes content only from the provided articles, avoiding any external data sources."
+    post_prompt: ""
+
+
+generation_kwargs:
+  max_new_tokens: 256
+  temperature: 0.2
+  do_sample: True
+
+
+metric_list:
+  - metric: multinews_score_overall
+    aggregation: !function utils.multinews_aggregation
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: true
+
+metadata:
+  - version: 0.0

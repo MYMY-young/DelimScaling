@@ -1,0 +1,31 @@
+dataset_path: ccdv/WCEP-10
+task: "wcep10"
+dataset_kwargs:
+  token: True
+test_split: test
+output_type: generate_until
+doc_to_text: !function utils.wcep10_doc_to_text
+doc_to_target: !function utils.wcep10_doc_to_target
+process_results: !function utils.wcep10_process_results
+
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: "</s>"
+    post_prompt: ""
+
+
+generation_kwargs:
+  max_new_tokens: 128
+  temperature: 0.2
+  do_sample: True
+
+
+metric_list:
+  - metric: wcep10_score_overall
+    aggregation: !function utils.wcep10_aggregation
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: true
+
+metadata:
+  - version: 0.0
