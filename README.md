@@ -102,7 +102,7 @@ If you find this work useful for your research, please consider citing:
 
 ```bib
 @inproceedings{lee2026delimscale,
-  title={Enhancing {Multi-Image} Understanding through {Delimiter Token} Scaling},
+  title={Enhancing Multi-Image Understanding through Delimiter Token Scaling},
   author={Lee, Minyoung and Park, Yeji and Hwang, Dongjun and Kim, Yejin and Oh, Seong Joon and Choe, Junsuk},
   booktitle={Proceedings of the 14th International Conference on Learning Representations},
   year={2026}
