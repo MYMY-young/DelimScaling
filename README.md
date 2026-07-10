@@ -96,7 +96,8 @@ We provide a script to visualize attention maps and inspect the effect of delimi
 ![](assets/attention_visualization_example.png)
 
 ```bash
-python3.10 attention_visualize.py \
+cd visualize
+python3 attention_visualize.py \
     --dataset mirb --sample-idx 257 --layer 35 \
     --select-layer 0,1,2,3 --scale 8 --res-patches 512
 ```
