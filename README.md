@@ -19,10 +19,10 @@ The following components will be released progressively:
 - [X] **Multi-image understanding evaluation code**  
   (Delimiter token scaling integrated into LVLM inference and evaluation pipelines)
 
-- [ ] **LLM benchmark code**  
+- [X] **LLM benchmark code**  
   (Multi-document and multi-table benchmarks including TQABench, MultiNews, and WCEP-10)
 
-- [ ] **Visualization code**  
+- [X] **Visualization code**  
   (Attention maps and interaction analysis for delimiter tokens)
 
 The full code will be released upon final preparation.
@@ -89,8 +89,28 @@ For Multi-Image Understanding:
 - **[InternVL3](https://huggingface.co/OpenGVLab/InternVL3-1B-hf)**
 - **[LLaVA-OneVision](https://huggingface.co/llava-hf/llava-onevision-qwen2-7b-ov-hf)**
 
+## Visualization
 
+We provide a script to visualize attention maps and inspect the effect of delimiter token scaling directly, comparing baseline vs. scaled attention across image segments.
 
+![](assets/attention_visualization_example.png)
+
+```bash
+python3.10 attention_visualize.py \
+    --dataset mirb --sample-idx 257 --layer 35 \
+    --select-layer 0,1,2,3 --scale 8 --res-patches 512
+```
+
+### Key Arguments
+
+- `--dataset` : Evaluation dataset to draw the sample from (`mantis` or `mirb`).
+- `--sample-idx` : Dataset row index to visualize.
+- `--layer` : Which transformer layer's attention to visualize (0-indexed).
+- `--select-layer` : Comma-separated layer indices where delimiter token scaling is applied.
+- `--scale` : Delimiter token scaling factor.
+- `--res-patches` : Image resolution cap, in units of 28x28 patches.
+
+Outputs (baseline / scaled attention maps and side-by-side comparisons) are saved to `attn_maps/` by default (`--out-dir` to change).
 
 ## Acknowledgments
 Our code is based on [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) and [Transformer](https://github.com/huggingface/transformers).
